@@ -62,17 +62,14 @@
 
             <label>Brand:</label>
             <select name="company">
-                {% for item in ['Toshiba', 'MSI', 'Asus', 'Dell', 'HP', 'Lenovo', 'Acer', 'LG',
-                'Apple', 'Google', 'Microsoft', 'Chuwi', 'Fujitsu', 'Mediacom',
-                'Samsung', 'Razer', 'Xiaomi', 'Vero', 'Huawei'] %}
+                {% for item in companies %}
                     <option value="{{ item }}">{{ item }}</option>
                 {% endfor %}
             </select>
 
             <label>Type:</label>
             <select name="type">
-                {% for item in ['Notebook', 'Gaming', 'Netbook', '2 in 1 Convertible', 'Ultrabook',
-                'Workstation'] %}
+                {% for item in types %}
                     <option value="{{ item }}">{{ item }}</option>
                 {% endfor %}
             </select>
@@ -111,8 +108,7 @@
 
             <label>CPU:</label>
             <select name="cpu">
-                {% for item in ['Intel Core i5', 'Intel Core i7', 'Other Inter Processor',
-                'Intel Core i3', 'AMD Processor'] %}
+                {% for item in cpus %}
                     <option value="{{ item }}">{{ item }}</option>
                 {% endfor %}
             </select>
@@ -133,14 +129,14 @@
 
             <label>GPU:</label>
             <select name="gpu">
-                {% for item in ['Intel', 'Nvidia', 'AMD'] %}
+                {% for item in gpus %}
                     <option value="{{ item }}">{{ item }}</option>
                 {% endfor %}
             </select>
 
             <label>Operating System:</label>
             <select name="os">
-                {% for item in ['Windows', 'Others/No OS/Linux', 'Mac'] %}
+                {% for item in oss %}
                     <option value="{{ item }}">{{ item }}</option>
                 {% endfor %}
             </select>
