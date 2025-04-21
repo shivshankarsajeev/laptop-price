@@ -1,82 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Laptop Price Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        h3 {
+            text-align: center;
+            color: #2e7d32;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Laptop Configuration</h2>
-    <form action="/predict" method="post">
-        Brand: <select name="company">
-            {% for item in companies %}
-                <option value="{{ item }}">{{ item }}</option>
-            {% endfor %}
-        </select><br>
+    <div class="container">
+        <h2>Laptop Price Predictor</h2>
+        <form action="/predict" method="post">
 
-        Type: <select name="type">
-            {% for item in types %}
-                <option value="{{ item }}">{{ item }}</option>
-            {% endfor %}
-        </select><br>
+            <label>Brand:</label>
+            <select name="company">
+                {% for item in ['Toshiba', 'MSI', 'Asus', 'Dell', 'HP', 'Lenovo', 'Acer', 'LG',
+                'Apple', 'Google', 'Microsoft', 'Chuwi', 'Fujitsu', 'Mediacom',
+                'Samsung', 'Razer', 'Xiaomi', 'Vero', 'Huawei'] %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
 
-        RAM: <select name="ram">
-            {% for ram_size in [2,4,6,8,12,16,24,32,64] %}
-                <option value="{{ ram_size }}">{{ ram_size }}</option>
-            {% endfor %}
-        </select><br>
+            <label>Type:</label>
+            <select name="type">
+                {% for item in ['Notebook', 'Gaming', 'Netbook', '2 in 1 Convertible', 'Ultrabook',
+                'Workstation'] %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
 
-        Weight: <input type="number" step="any" name="weight"><br>
+            <label>RAM (GB):</label>
+            <select name="ram">
+                {% for ram_size in [2,4,6,8,12,16,24,32,64] %}
+                    <option value="{{ ram_size }}">{{ ram_size }}</option>
+                {% endfor %}
+            </select>
 
-        Touchscreen: <select name="touchscreen">
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-        </select><br>
+            <label>Weight (kg):</label>
+            <input type="number" step="any" name="weight">
 
-        IPS: <select name="ips">
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-        </select><br>
+            <label>Touchscreen:</label>
+            <select name="touchscreen">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
 
-        Screen Size (inches): <input type="number" step="any" name="screen_size"><br>
+            <label>IPS Display:</label>
+            <select name="ips">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
 
-        Resolution: <select name="resolution">
-            {% for res in ['1920x1080','1366x768','1600x900','3840x2160','3200x1800','2880x1800','2560x1600','2560x1440','2304x1440'] %}
-                <option value="{{ res }}">{{ res }}</option>
-            {% endfor %}
-        </select><br>
+            <label>Screen Size (inches):</label>
+            <input type="number" step="any" name="screen_size">
 
-        CPU: <select name="cpu">
-            {% for item in cpus %}
-                <option value="{{ item }}">{{ item }}</option>
-            {% endfor %}
-        </select><br>
+            <label>Resolution:</label>
+            <select name="resolution">
+                {% for res in ['1920x1080','1366x768','1600x900','3840x2160','3200x1800','2880x1800','2560x1600','2560x1440','2304x1440'] %}
+                    <option value="{{ res }}">{{ res }}</option>
+                {% endfor %}
+            </select>
 
-        HDD: <select name="hdd">
-            {% for size in [0,128,256,512,1024,2048] %}
-                <option value="{{ size }}">{{ size }}</option>
-            {% endfor %}
-        </select><br>
+            <label>CPU:</label>
+            <select name="cpu">
+                {% for item in ['Intel Core i5', 'Intel Core i7', 'Other Inter Processor',
+                'Intel Core i3', 'AMD Processor'] %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
 
-        SSD: <select name="ssd">
-            {% for size in [0,8,128,256,512,1024] %}
-                <option value="{{ size }}">{{ size }}</option>
-            {% endfor %}
-        </select><br>
+            <label>HDD (GB):</label>
+            <select name="hdd">
+                {% for size in [0,128,256,512,1024,2048] %}
+                    <option value="{{ size }}">{{ size }}</option>
+                {% endfor %}
+            </select>
 
-        GPU: <select name="gpu">
-            {% for item in gpus %}
-                <option value="{{ item }}">{{ item }}</option>
-            {% endfor %}
-        </select><br>
+            <label>SSD (GB):</label>
+            <select name="ssd">
+                {% for size in [0,8,128,256,512,1024] %}
+                    <option value="{{ size }}">{{ size }}</option>
+                {% endfor %}
+            </select>
 
-        OS: <select name="os">
-            {% for item in oss %}
-                <option value="{{ item }}">{{ item }}</option>
-            {% endfor %}
-        </select><br><br>
+            <label>GPU:</label>
+            <select name="gpu">
+                {% for item in ['Intel', 'Nvidia', 'AMD'] %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
 
-        <input type="submit" value="Predict">
-    </form>
+            <label>Operating System:</label>
+            <select name="os">
+                {% for item in ['Windows', 'Others/No OS/Linux', 'Mac'] %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
 
-    <h3>{{ prediction_text }}</h3>
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
 </body>
 </html>
