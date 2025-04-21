@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laptop Price Predictor</title>
+</head>
+<body>
+    <h2>Laptop Configuration</h2>
+    <form action="/predict" method="post">
+        Brand: <select name="company">
+            {% for item in companies %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select><br>
+
+        Type: <select name="type">
+            {% for item in types %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select><br>
+
+        RAM: <select name="ram">
+            {% for ram_size in [2,4,6,8,12,16,24,32,64] %}
+                <option value="{{ ram_size }}">{{ ram_size }}</option>
+            {% endfor %}
+        </select><br>
+
+        Weight: <input type="number" step="any" name="weight"><br>
+
+        Touchscreen: <select name="touchscreen">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        IPS: <select name="ips">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        Screen Size (inches): <input type="number" step="any" name="screen_size"><br>
+
+        Resolution: <select name="resolution">
+            {% for res in ['1920x1080','1366x768','1600x900','3840x2160','3200x1800','2880x1800','2560x1600','2560x1440','2304x1440'] %}
+                <option value="{{ res }}">{{ res }}</option>
+            {% endfor %}
+        </select><br>
+
+        CPU: <select name="cpu">
+            {% for item in cpus %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select><br>
+
+        HDD: <select name="hdd">
+            {% for size in [0,128,256,512,1024,2048] %}
+                <option value="{{ size }}">{{ size }}</option>
+            {% endfor %}
+        </select><br>
+
+        SSD: <select name="ssd">
+            {% for size in [0,8,128,256,512,1024] %}
+                <option value="{{ size }}">{{ size }}</option>
+            {% endfor %}
+        </select><br>
+
+        GPU: <select name="gpu">
+            {% for item in gpus %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select><br>
+
+        OS: <select name="os">
+            {% for item in oss %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    <h3>{{ prediction_text }}</h3>
+</body>
+</html>

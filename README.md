@@ -149,6 +149,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 For any queries or suggestions, feel free to connect:
 
-- **GitHub**: [your-username](https://github.com/your-username)
-- **Email**: your.email@example.com
+- **GitHub**: [shivshankarsajeev](https://github.com/shivshankarsajeev)
 
